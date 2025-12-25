@@ -1,0 +1,74 @@
+{
+  "info": {
+    "name": "Secure File Share - Backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_postman_id": "b2c3f6c4-9d5a-4dfe-82e2-000000000001"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5000" },
+    { "key": "fileId", "value": "" },
+    { "key": "token", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Upload File",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Accept", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/files/upload",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "files", "upload"]
+        },
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "src": ""
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Share Link",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Accept", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/share/{{fileId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "share", "{{fileId}}"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"expiresInMinutes\": 15\n}"
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Access File by Token",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Accept", "value": "*/*" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/share/{{token}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "share", "{{token}}"]
+        }
+      },
+      "response": []
+    }
+  ]
+}

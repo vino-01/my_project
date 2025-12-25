@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
-const fileSchema =  new mongoose.scheme({
+const fileSchema = new mongoose.Schema({
     ownerId: String,
-    path:String,
-    iv:Buffer,
-    createAt: {type:Date, default: Date.now}
+    path: String,
+    iv: Buffer,
+    createdAt: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.models("File", fileSchema);
+module.exports = mongoose.model("File", fileSchema);
